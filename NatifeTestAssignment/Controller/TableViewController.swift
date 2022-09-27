@@ -12,6 +12,7 @@ class TableViewController: UITableViewController {
     var posts = [Post]()
     
     var toggle: Bool = false
+    var senderTag = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +46,10 @@ class TableViewController: UITableViewController {
         cell.subtitleLabel.tag = indexPath.row
         
         if toggle {
-            cell.subtitleLabel.numberOfLines = .max
-            cell.dynamicViewButton.titleLabel?.text = "Collapse"
+            if indexPath.row == senderTag {
+                cell.subtitleLabel.numberOfLines = .max
+                cell.dynamicViewButton.titleLabel?.text = "Collapse"
+            }
         } else {
             cell.subtitleLabel.numberOfLines = 2
             cell.dynamicViewButton.titleLabel?.text = "Expand"
@@ -83,6 +86,7 @@ class TableViewController: UITableViewController {
             sender.transform = .identity
         })
         toggle.toggle()
+        senderTag = sender.tag
         tableView.reloadData()
     }
     
