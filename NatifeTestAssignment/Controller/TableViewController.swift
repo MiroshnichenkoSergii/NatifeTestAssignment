@@ -18,6 +18,9 @@ class TableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(filter))
         
+        tableView.estimatedRowHeight = 68.0
+        tableView.rowHeight = UITableView.automaticDimension
+        
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
 
         if let url = URL(string: urlString) {
@@ -34,11 +37,25 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cell
         let post = posts[indexPath.row]
         
-        cell.textLabel?.attributedText = attribute.makeAttributedTitle(title: post.title)
-        cell.detailTextLabel?.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
+        cell.titleLabel.attributedText = attribute.makeAttributedTitle(title: post.title)
+        cell.subtitleLabel.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
+        
+        cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
+        
+        let nowDate = Date.now
+        let postingDate = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))
+        let diff = Calendar.current.dateComponents([.day], from: postingDate, to: nowDate).day
+        
+        cell.lastDateLabel.text = "\(diff ?? 0)" + " days ago"
+        
+        //button
+        cell.dynamicViewButton.layer.cornerRadius = 5
+        cell.dynamicViewButton.layer.borderWidth = 1
+        cell.dynamicViewButton.layer.borderColor = UIColor.systemBlue.cgColor
+        cell.dynamicViewButton.titleLabel?.text = "Expand"
         
         return cell
     }

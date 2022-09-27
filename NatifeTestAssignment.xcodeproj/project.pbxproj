@@ -17,6 +17,7 @@
 		EFA0D83828E1B8F600D0E49B /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83728E1B8F600D0E49B /* Posts.swift */; };
 		EFA0D83B28E1BB1000D0E49B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83A28E1BB1000D0E49B /* DetailViewController.swift */; };
 		EFA0D83E28E206B000D0E49B /* AttributedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */; };
+		EFA0D84028E2D4B700D0E49B /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83F28E2D4B700D0E49B /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		EFA0D83728E1B8F600D0E49B /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		EFA0D83A28E1BB1000D0E49B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedFunctions.swift; sourceTree = "<group>"; };
+		EFA0D83F28E2D4B700D0E49B /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cell.swift; path = NatifeTestAssignment/Cell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				EFA0D82528E1B63600D0E49B /* TableViewController.swift */,
+				EFA0D83F28E2D4B700D0E49B /* Cell.swift */,
 				EFA0D83A28E1BB1000D0E49B /* DetailViewController.swift */,
 				EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */,
 			);
@@ -171,6 +174,7 @@
 				EFA0D82228E1B63600D0E49B /* AppDelegate.swift in Sources */,
 				EFA0D83828E1B8F600D0E49B /* Posts.swift in Sources */,
 				EFA0D83B28E1BB1000D0E49B /* DetailViewController.swift in Sources */,
+				EFA0D84028E2D4B700D0E49B /* Cell.swift in Sources */,
 				EFA0D82428E1B63600D0E49B /* SceneDelegate.swift in Sources */,
 				EFA0D83628E1B88200D0E49B /* Post.swift in Sources */,
 			);
