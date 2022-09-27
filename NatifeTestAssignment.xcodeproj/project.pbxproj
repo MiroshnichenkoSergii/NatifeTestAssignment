@@ -16,6 +16,7 @@
 		EFA0D83628E1B88200D0E49B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83528E1B88200D0E49B /* Post.swift */; };
 		EFA0D83828E1B8F600D0E49B /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83728E1B8F600D0E49B /* Posts.swift */; };
 		EFA0D83B28E1BB1000D0E49B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83A28E1BB1000D0E49B /* DetailViewController.swift */; };
+		EFA0D83E28E206B000D0E49B /* AttributedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EFA0D83528E1B88200D0E49B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EFA0D83728E1B8F600D0E49B /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		EFA0D83A28E1BB1000D0E49B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				EFA0D82528E1B63600D0E49B /* TableViewController.swift */,
 				EFA0D83A28E1BB1000D0E49B /* DetailViewController.swift */,
+				EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA0D82628E1B63600D0E49B /* TableViewController.swift in Sources */,
+				EFA0D83E28E206B000D0E49B /* AttributedFunctions.swift in Sources */,
 				EFA0D82228E1B63600D0E49B /* AppDelegate.swift in Sources */,
 				EFA0D83828E1B8F600D0E49B /* Posts.swift in Sources */,
 				EFA0D83B28E1BB1000D0E49B /* DetailViewController.swift in Sources */,

@@ -8,10 +8,13 @@
 import UIKit
 
 class TableViewController: UITableViewController {
+    var attribute = AttributedFunctions()
     var posts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Natife Posts List"
         
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
 
@@ -31,17 +34,19 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let post = posts[indexPath.row]
-        cell.textLabel?.text = post.title
-        cell.detailTextLabel?.text = post.preview_text
+        
+        cell.textLabel?.attributedText = attribute.makeAttributedString(title: post.title, subtitle: post.preview_text)
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        vc.detailItem = posts[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            vc.detailItem = posts[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
-
+    
     func parse(json: Data) {
         let decoder = JSONDecoder()
 
