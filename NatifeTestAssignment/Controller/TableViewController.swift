@@ -10,7 +10,9 @@ import UIKit
 class TableViewController: UITableViewController {
     var attribute = AttributedFunctions()
     var posts = [Post]()
-
+    
+    var toggle: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,11 +20,9 @@ class TableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(filter))
         
-        tableView.estimatedRowHeight = 68.0
         tableView.rowHeight = UITableView.automaticDimension
         
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
-
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
@@ -42,6 +42,15 @@ class TableViewController: UITableViewController {
         
         cell.titleLabel.attributedText = attribute.makeAttributedTitle(title: post.title)
         cell.subtitleLabel.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
+        cell.subtitleLabel.tag = indexPath.row
+        
+        if toggle {
+            cell.subtitleLabel.numberOfLines = .max
+            cell.dynamicViewButton.titleLabel?.text = "Collapse"
+        } else {
+            cell.subtitleLabel.numberOfLines = 2
+            cell.dynamicViewButton.titleLabel?.text = "Expand"
+        }
         
         cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
         
@@ -55,7 +64,7 @@ class TableViewController: UITableViewController {
         cell.dynamicViewButton.layer.cornerRadius = 5
         cell.dynamicViewButton.layer.borderWidth = 1
         cell.dynamicViewButton.layer.borderColor = UIColor.systemBlue.cgColor
-        cell.dynamicViewButton.titleLabel?.text = "Expand"
+        cell.dynamicViewButton.tag = indexPath.row
         
         return cell
     }
@@ -65,6 +74,16 @@ class TableViewController: UITableViewController {
             vc.detailItem = posts[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @IBAction func tap(_ sender: UIButton) {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [],
+           animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            sender.transform = .identity
+        })
+        toggle.toggle()
+        tableView.reloadData()
     }
     
     @objc func filter() {
