@@ -10,7 +10,7 @@ import Foundation
 
 class AttributedFunctions {
     func makeAttributedString(title: String, subtitle: String) -> NSAttributedString {
-        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.systemMint]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.systemBlue]
         let subtitleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
 
         let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)

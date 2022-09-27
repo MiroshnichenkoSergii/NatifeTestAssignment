@@ -16,6 +16,8 @@ class TableViewController: UITableViewController {
         
         title = "Natife Posts List"
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(filter))
+        
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
 
         if let url = URL(string: urlString) {
@@ -45,6 +47,22 @@ class TableViewController: UITableViewController {
             vc.detailItem = posts[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func filter() {
+        let ac = UIAlertController(title: "Choose option", message: nil, preferredStyle: .alert)
+
+        ac.addAction(UIAlertAction(title: "Sort by date", style: .default, handler: { [self] _ in
+            posts = posts.sorted(by: { $0.timeshamp > $1.timeshamp })
+            tableView.reloadData()
+        }))
+        ac.addAction(UIAlertAction(title: "Sort by rating", style: .default, handler: {[self] _ in
+            posts = posts.sorted(by: { $0.likes_count > $1.likes_count })
+            tableView.reloadData()
+        }))
+
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
     
     func parse(json: Data) {
