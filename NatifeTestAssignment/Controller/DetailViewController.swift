@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
         guard let detailItem = detailItem else { return }
 
         postImage.image = UIImage(named: "no_image")
-        postText.attributedText = attribute.makeAttributedString(title: detailItem.title, subtitle: detailItem.preview_text)
+        postText.attributedText = attribute.makeAttributedStringWithSubtitle(title: detailItem.title, subtitle: detailItem.preview_text)
         postTextHC.constant = self.postText.contentSize.height
         
         likes.text = "❤️‍🔥 \(detailItem.likes_count)"

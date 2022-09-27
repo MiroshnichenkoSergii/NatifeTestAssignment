@@ -37,7 +37,8 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let post = posts[indexPath.row]
         
-        cell.textLabel?.attributedText = attribute.makeAttributedString(title: post.title, subtitle: post.preview_text)
+        cell.textLabel?.attributedText = attribute.makeAttributedTitle(title: post.title)
+        cell.detailTextLabel?.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
         
         return cell
     }

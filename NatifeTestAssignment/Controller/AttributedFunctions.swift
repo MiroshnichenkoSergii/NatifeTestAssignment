@@ -9,7 +9,8 @@ import UIKit
 import Foundation
 
 class AttributedFunctions {
-    func makeAttributedString(title: String, subtitle: String) -> NSAttributedString {
+    
+    func makeAttributedStringWithSubtitle(title: String, subtitle: String) -> NSAttributedString {
         let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.systemBlue]
         let subtitleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
 
@@ -19,5 +20,17 @@ class AttributedFunctions {
         titleString.append(subtitleString)
 
         return titleString
+    }
+    
+    func makeAttributedTitle(title: String) -> NSAttributedString {
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline), NSAttributedString.Key.foregroundColor: UIColor.systemBlue]
+        let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
+        return titleString
+    }
+    
+    func makeAttributedSubtitle(subtitle: String) -> NSAttributedString {
+        let subtitleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let subtitleString = NSAttributedString(string: subtitle, attributes: subtitleAttributes)
+        return subtitleString
     }
 }
