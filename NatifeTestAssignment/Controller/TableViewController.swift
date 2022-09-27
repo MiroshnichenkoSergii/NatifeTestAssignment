@@ -12,6 +12,7 @@ class TableViewController: UITableViewController {
     var posts = [Post]()
     
     var toggle: Bool = false
+    var all: Bool = false
     var senderTag = 0
     
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class TableViewController: UITableViewController {
         title = "Natife Posts List"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(filter))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Expand All", style: .plain, target: self, action: #selector(expandAll))
         
         tableView.rowHeight = UITableView.automaticDimension
         
@@ -47,6 +49,9 @@ class TableViewController: UITableViewController {
         
         if toggle {
             if indexPath.row == senderTag {
+                cell.subtitleLabel.numberOfLines = .max
+                cell.dynamicViewButton.titleLabel?.text = "Collapse"
+            } else if all {
                 cell.subtitleLabel.numberOfLines = .max
                 cell.dynamicViewButton.titleLabel?.text = "Collapse"
             }
@@ -87,6 +92,12 @@ class TableViewController: UITableViewController {
         })
         toggle.toggle()
         senderTag = sender.tag
+        tableView.reloadData()
+    }
+    
+    @objc func expandAll() {
+        all.toggle()
+        toggle.toggle()
         tableView.reloadData()
     }
     
