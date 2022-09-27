@@ -52,10 +52,12 @@ class TableViewController: UITableViewController {
     @objc func filter() {
         let ac = UIAlertController(title: "Choose option", message: nil, preferredStyle: .alert)
 
+        //sort by date
         ac.addAction(UIAlertAction(title: "Sort by date", style: .default, handler: { [self] _ in
             posts = posts.sorted(by: { $0.timeshamp > $1.timeshamp })
             tableView.reloadData()
         }))
+        //sort by rating
         ac.addAction(UIAlertAction(title: "Sort by rating", style: .default, handler: {[self] _ in
             posts = posts.sorted(by: { $0.likes_count > $1.likes_count })
             tableView.reloadData()
