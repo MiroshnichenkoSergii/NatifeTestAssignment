@@ -68,7 +68,13 @@ class TableViewController: UITableViewController {
         
         cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
         
-        let nowDate = Date.now
+        let nowDate: Date
+        if #available(iOS 15, *) {
+            nowDate = Date.now
+        } else {
+            nowDate = Date(timeIntervalSinceNow: 0)
+        }
+        
         let postingDate = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))
         let diff = Calendar.current.dateComponents([.day], from: postingDate, to: nowDate).day
         
