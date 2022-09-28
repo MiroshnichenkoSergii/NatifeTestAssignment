@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Post: Codable {
     var postId: Int
@@ -15,7 +16,5 @@ struct Post: Codable {
     var title: String
     var preview_text: String
     
-    
-//    let image: String?
-    
+    var image: String? = "no_image"
 }
