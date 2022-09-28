@@ -26,10 +26,16 @@ class TableViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)
-                return
+        
+        DispatchQueue.global().async {
+            if let url = URL(string: urlString) {
+                if let data = try? Data(contentsOf: url) {
+                    
+                    DispatchQueue.main.async {
+                        self.parse(json: data)
+                        return
+                    }
+                }
             }
         }
         

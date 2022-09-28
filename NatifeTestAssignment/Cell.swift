@@ -8,7 +8,6 @@
 import UIKit
 
 class Cell: UITableViewCell {
-    var table = TableViewController()
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
