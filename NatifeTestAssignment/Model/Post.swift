@@ -16,5 +16,5 @@ struct Post: Codable {
     var title: String
     var preview_text: String
     
-    var image: String? = "no_image"
+    var image: String?
 }
