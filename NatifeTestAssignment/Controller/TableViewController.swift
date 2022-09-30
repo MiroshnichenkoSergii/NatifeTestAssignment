@@ -76,9 +76,9 @@ class TableViewController: UITableViewController {
         }
         
         let postingDate = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))
-        let diff = Calendar.current.dateComponents([.day], from: postingDate, to: nowDate).day
+        let diff = Calendar.current.dateComponents([.month, .day], from: postingDate, to: nowDate)
+        cell.lastDateLabel.text = "\(diff.month ?? 0) month, \(diff.day ?? 0) days ago"
         
-        cell.lastDateLabel.text = "\(diff ?? 0)" + " days ago"
         
         //button
         cell.dynamicViewButton.layer.cornerRadius = 5
