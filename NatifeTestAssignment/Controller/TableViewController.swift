@@ -79,11 +79,6 @@ class TableViewController: UITableViewController {
         let diff = Calendar.current.dateComponents([.month, .day], from: postingDate, to: nowDate)
         cell.lastDateLabel.text = "\(diff.month ?? 0) month, \(diff.day ?? 0) days ago"
         
-        
-        //button
-        cell.dynamicViewButton.layer.cornerRadius = 5
-        cell.dynamicViewButton.layer.borderWidth = 1
-        cell.dynamicViewButton.layer.borderColor = UIColor.systemBlue.cgColor
         cell.dynamicViewButton.tag = indexPath.row
         
         return cell
