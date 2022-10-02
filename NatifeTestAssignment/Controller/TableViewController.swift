@@ -23,8 +23,6 @@ class TableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(filter))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Expand All", style: .plain, target: self, action: #selector(expandAll))
         
-        tableView.rowHeight = UITableView.automaticDimension
-        
         let urlString = "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json"
         
         DispatchQueue.global().async {
