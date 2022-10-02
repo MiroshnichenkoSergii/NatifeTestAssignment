@@ -38,7 +38,6 @@ class TableViewController: UITableViewController {
                 }
             }
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +51,9 @@ class TableViewController: UITableViewController {
         cell.titleLabel.attributedText = attribute.makeAttributedTitle(title: post.title)
         cell.subtitleLabel.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
         cell.subtitleLabel.tag = indexPath.row
+        cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
+        cell.lastDateLabel.text = "\(dateSettings(post).month ?? 0) month, \(dateSettings(post).day ?? 0) days ago"
+        cell.dynamicViewButton.tag = indexPath.row
         
         // FIXME: Bad code, needs refactoring of expand/collapse feature
         if toggle {
@@ -66,21 +68,6 @@ class TableViewController: UITableViewController {
             cell.subtitleLabel.numberOfLines = 2
             cell.dynamicViewButton.titleLabel?.text = "Expand"
         }
-        
-        cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
-        
-        let nowDate: Date
-        if #available(iOS 15, *) {
-            nowDate = Date.now
-        } else {
-            nowDate = Date(timeIntervalSinceNow: 0)
-        }
-        
-        let postingDate = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))
-        let diff = Calendar.current.dateComponents([.month, .day], from: postingDate, to: nowDate)
-        
-        cell.lastDateLabel.text = "\(diff.month ?? 0) month, \(diff.day ?? 0) days ago"
-        cell.dynamicViewButton.tag = indexPath.row
         
         return cell
     }
@@ -125,6 +112,18 @@ class TableViewController: UITableViewController {
 
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
+    }
+    
+    func dateSettings(_ post: Post) -> DateComponents{
+        let nowDate: Date
+        if #available(iOS 15, *) {
+            nowDate = Date.now
+        } else {
+            nowDate = Date(timeIntervalSinceNow: 0)
+        }
+        let postingDate = Date(timeIntervalSince1970: TimeInterval(post.timeshamp))
+        let diff = Calendar.current.dateComponents([.month, .day], from: postingDate, to: nowDate)
+        return diff
     }
     
     func parse(json: Data) {
