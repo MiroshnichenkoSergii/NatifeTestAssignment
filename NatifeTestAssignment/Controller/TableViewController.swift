@@ -11,8 +11,8 @@ class TableViewController: UITableViewController {
     var attribute = AttributedFunctions()
     var posts = [Post]()
     
-    var toggle: Bool = false
-    var all: Bool = false
+    var toggleOneCell: Bool = false
+    var toggleAllCells: Bool = false
     var senderTag = 0
     
     override func viewDidLoad() {
@@ -54,17 +54,17 @@ class TableViewController: UITableViewController {
         cell.dynamicViewButton.tag = indexPath.row
         
         // FIXME: Bad code, needs refactoring of expand/collapse feature
-        if toggle {
-            if indexPath.row == senderTag {
-                cell.subtitleLabel.numberOfLines = .max
-                cell.dynamicViewButton.titleLabel?.text = "Collapse"
-            } else if all {
-                cell.subtitleLabel.numberOfLines = .max
-                cell.dynamicViewButton.titleLabel?.text = "Collapse"
-            }
+        if toggleAllCells {
+            cell.subtitleLabel.numberOfLines = .max
+            cell.dynamicViewButton.titleLabel?.text = "Collapse"
         } else {
-            cell.subtitleLabel.numberOfLines = 2
-            cell.dynamicViewButton.titleLabel?.text = "Expand"
+            if toggleOneCell && indexPath.row == senderTag {
+                cell.subtitleLabel.numberOfLines = .max
+                cell.dynamicViewButton.titleLabel?.text = "Collapse"
+            } else {
+                cell.subtitleLabel.numberOfLines = 2
+                cell.dynamicViewButton.titleLabel?.text = "Expand"
+            }
         }
         
         return cell
@@ -83,14 +83,14 @@ class TableViewController: UITableViewController {
             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
             sender.transform = .identity
         })
-        toggle.toggle()
+        toggleOneCell.toggle()
         senderTag = sender.tag
         tableView.reloadData()
     }
     
     @objc func expandAll() {
-        all.toggle()
-        toggle.toggle()
+        toggleAllCells.toggle()
+        toggleOneCell.toggle()
         tableView.reloadData()
     }
     
