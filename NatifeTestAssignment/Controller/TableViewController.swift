@@ -10,10 +10,9 @@ import UIKit
 class TableViewController: UITableViewController {
     var attribute = AttributedFunctions()
     var posts = [Post]()
-    
     var toggleOneCell: Bool = false
     var toggleAllCells: Bool = false
-    var senderTag = 0
+    var senderTag: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +53,7 @@ class TableViewController: UITableViewController {
         cell.dynamicViewButton.tag = indexPath.row
         
         // FIXME: Bad code, needs refactoring of expand/collapse feature
+        
         if toggleAllCells {
             cell.subtitleLabel.numberOfLines = .max
             cell.dynamicViewButton.titleLabel?.text = "Collapse"
@@ -83,6 +83,7 @@ class TableViewController: UITableViewController {
             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
             sender.transform = .identity
         })
+        
         toggleOneCell.toggle()
         senderTag = sender.tag
         tableView.reloadData()

@@ -18,15 +18,19 @@ class Cell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        
+        
         // Button view settings
         dynamicViewButton.layer.cornerRadius = 5
         dynamicViewButton.layer.borderWidth = 1
         dynamicViewButton.layer.borderColor = UIColor.systemBlue.cgColor
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
 
 }

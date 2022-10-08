@@ -71,9 +71,7 @@
 				EFA0D84528E9E48000D0E49B /* View */,
 				EFA0D83C28E1BB5700D0E49B /* Controller */,
 				EFA0D83928E1B96000D0E49B /* Model */,
-				EFA0D82728E1B63700D0E49B /* Main.storyboard */,
 				EFA0D82A28E1B63A00D0E49B /* Assets.xcassets */,
-				EFA0D82C28E1B63A00D0E49B /* LaunchScreen.storyboard */,
 				EFA0D82F28E1B63A00D0E49B /* Info.plist */,
 			);
 			path = NatifeTestAssignment;
@@ -100,6 +98,8 @@
 		EFA0D84528E9E48000D0E49B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EFA0D82728E1B63700D0E49B /* Main.storyboard */,
+				EFA0D82C28E1B63A00D0E49B /* LaunchScreen.storyboard */,
 				EFA0D83F28E2D4B700D0E49B /* Cell.swift */,
 				EFA0D83D28E206B000D0E49B /* AttributedFunctions.swift */,
 			);
