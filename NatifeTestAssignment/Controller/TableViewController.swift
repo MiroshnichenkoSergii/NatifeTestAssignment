@@ -10,6 +10,7 @@ import UIKit
 class TableViewController: UITableViewController {
     var attribute = AttributedFunctions()
     var posts = [Post]()
+    
     var toggleOneCell: Bool = false
     var toggleAllCells: Bool = false
     var senderTag: Int?
@@ -78,15 +79,15 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func tap(_ sender: UIButton) {
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [],
+        UIView.animate(withDuration: 0.3, delay: 0, options: [],
            animations: {
-            sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            sender.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
             sender.transform = .identity
-        })
+        }, completion: { _ in self.tableView.reloadData() })
         
-        toggleOneCell.toggle()
-        senderTag = sender.tag
-        tableView.reloadData()
+        self.toggleOneCell.toggle()
+        self.senderTag = sender.tag
+        
     }
     
     @objc func expandAll() {
