@@ -78,6 +78,10 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func tap(_ sender: UIButton) {
+        
+        toggleOneCell.toggle()
+        senderTag = sender.tag
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: [],
            animations: {
             sender.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
@@ -85,10 +89,6 @@ class TableViewController: UITableViewController {
         }, completion: { _ in
             self.tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
         })
-        
-        self.toggleOneCell.toggle()
-        self.senderTag = sender.tag
-        
     }
     
     @objc func expandAll() {
