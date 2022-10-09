@@ -18,8 +18,6 @@ class Cell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        
         // Button view settings
         dynamicViewButton.layer.cornerRadius = 5
         dynamicViewButton.layer.borderWidth = 1

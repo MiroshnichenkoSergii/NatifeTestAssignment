@@ -54,13 +54,12 @@ class TableViewController: UITableViewController {
         cell.dynamicViewButton.tag = indexPath.row
         
         // FIXME: Bad code, needs refactoring of expand/collapse feature
-        
         if toggleAllCells {
-            cell.subtitleLabel.numberOfLines = .max
+            cell.subtitleLabel.numberOfLines = 0
             cell.dynamicViewButton.titleLabel?.text = "Collapse"
         } else {
             if toggleOneCell && indexPath.row == senderTag {
-                cell.subtitleLabel.numberOfLines = .max
+                cell.subtitleLabel.numberOfLines = 0
                 cell.dynamicViewButton.titleLabel?.text = "Collapse"
             } else {
                 cell.subtitleLabel.numberOfLines = 2
