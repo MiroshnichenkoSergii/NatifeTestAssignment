@@ -82,7 +82,9 @@ class TableViewController: UITableViewController {
            animations: {
             sender.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
             sender.transform = .identity
-        }, completion: { _ in self.tableView.reloadData() })
+        }, completion: { _ in
+            self.tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
+        })
         
         self.toggleOneCell.toggle()
         self.senderTag = sender.tag
