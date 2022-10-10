@@ -56,8 +56,10 @@ class TableViewController: UITableViewController {
         // FIXME: Bad code, needs refactoring of expand/collapse feature
         if toggleAllCells {
             cell.subtitleLabel.numberOfLines = 0
+            cell.dynamicViewButton.isEnabled = false
             cell.dynamicViewButton.titleLabel?.text = "Collapse"
         } else {
+            cell.dynamicViewButton.isEnabled = true
             if toggleOneCell && indexPath.row == senderTag {
                 cell.subtitleLabel.numberOfLines = 0
                 cell.dynamicViewButton.titleLabel?.text = "Collapse"
@@ -87,14 +89,15 @@ class TableViewController: UITableViewController {
             sender.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
             sender.transform = .identity
         }, completion: { _ in
-            self.tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
+            self.tableView.reloadData()
         })
     }
     
     @objc func expandAll() {
-        toggleAllCells.toggle()
-        toggleOneCell.toggle()
-        tableView.reloadData()
+        if !toggleOneCell {
+            toggleAllCells.toggle()
+            tableView.reloadData()
+        }
     }
     
     @objc func filter() {
