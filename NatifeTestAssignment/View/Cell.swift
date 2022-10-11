@@ -9,11 +9,22 @@ import UIKit
 
 class Cell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var likesLabel: UILabel!
-    @IBOutlet var lastDateLabel: UILabel!
-    @IBOutlet var dynamicViewButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var lastDateLabel: UILabel!
+    @IBOutlet weak var dynamicViewButton: UIButton!
+    
+    var numberOfLines: Int = 2
+    
+    var buttonTitle: String = "Expand"
+    
+    var isCellExpanded: Bool = false {
+        didSet {
+            numberOfLines = isCellExpanded ? 0 : 2
+            buttonTitle = isCellExpanded ? "Collapse" : "Expand"
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +38,6 @@ class Cell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
-    
-
 }
+

@@ -11,9 +11,7 @@ class TableViewController: UITableViewController {
     var attribute = AttributedFunctions()
     var posts = [Post]()
     
-    var toggleOneCell: Bool = false
     var toggleAllCells: Bool = false
-    var senderTag: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,28 +44,23 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cell
         let post = posts[indexPath.row]
         
-        cell.titleLabel.attributedText = attribute.makeAttributedTitle(title: post.title)
-        cell.subtitleLabel.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
-        cell.subtitleLabel.tag = indexPath.row
-        cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
-        cell.lastDateLabel.text = "\(dateSettings(post).month ?? 0) month, \(dateSettings(post).day ?? 0) days ago"
         cell.dynamicViewButton.tag = indexPath.row
         
-        // FIXME: Bad code, needs refactoring of expand/collapse feature
+        cell.titleLabel.attributedText = attribute.makeAttributedTitle(title: post.title)
+        cell.subtitleLabel.attributedText = attribute.makeAttributedSubtitle(subtitle: post.preview_text)
+        
+        cell.likesLabel.text = "❤️‍🔥 \(post.likes_count)"
+        cell.lastDateLabel.text = "\(dateSettings(post).month ?? 0) month, \(dateSettings(post).day ?? 0) days ago"
+        
         if toggleAllCells {
+            cell.dynamicViewButton.setTitle("Collapse", for: .normal)
             cell.subtitleLabel.numberOfLines = 0
-            cell.dynamicViewButton.isEnabled = false
-            cell.dynamicViewButton.titleLabel?.text = "Collapse"
-        } else {
-            cell.dynamicViewButton.isEnabled = true
-            if toggleOneCell && indexPath.row == senderTag {
-                cell.subtitleLabel.numberOfLines = 0
-                cell.dynamicViewButton.titleLabel?.text = "Collapse"
-            } else {
-                cell.subtitleLabel.numberOfLines = 2
-                cell.dynamicViewButton.titleLabel?.text = "Expand"
-            }
+            return cell
         }
+        
+        cell.dynamicViewButton.isEnabled = true
+        cell.dynamicViewButton.setTitle(cell.buttonTitle, for: .normal) 
+        cell.subtitleLabel.numberOfLines = cell.numberOfLines
         
         return cell
     }
@@ -80,24 +73,24 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func tap(_ sender: UIButton) {
-        
-        toggleOneCell.toggle()
-        senderTag = sender.tag
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: [],
-           animations: {
-            sender.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-            sender.transform = .identity
-        }, completion: { _ in
-            self.tableView.reloadData()
-        })
+        toggleAllCells = false
+        let index = IndexPath(row: sender.tag, section: 0)
+
+        if let cell = tableView.cellForRow(at: index) as? Cell {
+            cell.isCellExpanded.toggle()
+
+            if #available(iOS 15.0, *) {
+                tableView.reconfigureRows(at: [index])
+            } else {
+                // for iOS 14 can't test yet
+                tableView.reloadRows(at: [index], with: .automatic)
+            }
+        }
     }
     
     @objc func expandAll() {
-        if !toggleOneCell {
-            toggleAllCells.toggle()
-            tableView.reloadData()
-        }
+        toggleAllCells.toggle()
+        tableView.reloadData()
     }
     
     @objc func filter() {
@@ -142,4 +135,5 @@ class TableViewController: UITableViewController {
     }
     
 }
+
 
